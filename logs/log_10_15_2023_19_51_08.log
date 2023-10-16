@@ -1,0 +1,49 @@
+2023-10-15 19:51:08,328 UTC DEBUG    builtins        Headers before feature: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-15 19:51:08,328 UTC INFO     utils.rest_client Method Name: get
+2023-10-15 19:51:08,328 UTC INFO     utils.rest_client Endpoint (URL): https://api.todoist.com/rest/v2/projects
+2023-10-15 19:51:09,612 UTC INFO     utils.rest_client Status code: 200
+2023-10-15 19:51:09,620 UTC DEBUG    utils.rest_client Request: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-15 19:51:09,625 UTC INFO     utils.rest_client Response: [
+	{
+		"id": "2319574915",
+		"parent_id": null,
+		"order": 0,
+		"color": "charcoal",
+		"name": "Inbox",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": true,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2319574915",
+		"view_style": "list"
+	},
+	{
+		"id": "2321526644",
+		"parent_id": null,
+		"order": 4,
+		"color": "charcoal",
+		"name": "Project 2",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": false,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2321526644",
+		"view_style": "list"
+	}
+]
+
+2023-10-15 19:51:09,644 UTC DEBUG    builtins        {'body': [{'id': '2319574915', 'parent_id': None, 'order': 0, 'color': 'charcoal', 'name': 'Inbox', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': True, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2319574915', 'view_style': 'list'}, {'id': '2321526644', 'parent_id': None, 'order': 4, 'color': 'charcoal', 'name': 'Project 2', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': False, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2321526644', 'view_style': 'list'}], 'headers': {'Content-Type': 'application/json', 'Content-Length': '626', 'Connection': 'keep-alive', 'Date': 'Sun, 15 Oct 2023 23:51:09 GMT', 'Access-Control-Allow-Credentials': 'false', 'Access-Control-Allow-Origin': '*', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Server': 'gunicorn', 'Set-Cookie': 'csrf=7790d9e72d8c4004a9d28b536915839f; Expires=Wed, 12-Oct-2033 23:51:09 GMT; Secure; Path=/; SameSite=None, tduser=v4.public.eyJ1c2VyX2lkIjogNDU2ODEzMTksICJleHAiOiAiMjAyMy0xMC0yOVQyMzo1MTowOSswMDowMCJ9eUnUcktTxtsexXJUPGlEJ-P1flpk3W7xMLOqZzRlPzgSP8cXN68lmETKsPkWBfIBSqDS-RgBUyALm8lZILaiBA; Domain=.todoist.com; Expires=Sun, 29-Oct-2023 23:51:09 GMT; Max-Age=1209600; Secure; HttpOnly; Path=/', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'Accept-Encoding', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 c5ff917d2e5c954d84a7b9d6201c50d6.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SCL51-P2', 'X-Amz-Cf-Id': '8JVetHJ8VRqTAiOh_hXsnXpyS2YiPrEarSRtY-Mklq5QBcZ-sGFTgw=='}, 'status': 200}
+2023-10-15 19:51:09,660 UTC DEBUG    builtins        Scenario tags: ['task_id']
+2023-10-15 19:51:09,660 UTC DEBUG    builtins        Scenario Name: Verify GET one tasks is returning all data correctly
+2023-10-15 19:51:09,660 UTC DEBUG    builtins        HEADERS: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-15 19:51:09,660 UTC DEBUG    builtins        URL: https://api.todoist.com/rest/v2/
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        Scenario tags: ['task_id']
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        Scenario Name: Verify DELETE task endpoint deletes a task with the id provided
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        HEADERS: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        URL: https://api.todoist.com/rest/v2/
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        Scenario tags: ['task_id']
+2023-10-15 19:51:09,668 UTC DEBUG    builtins        Scenario Name: Verify POST task endpoint updates a task with the content provided
+2023-10-15 19:51:09,675 UTC DEBUG    builtins        HEADERS: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-15 19:51:09,675 UTC DEBUG    builtins        URL: https://api.todoist.com/rest/v2/
