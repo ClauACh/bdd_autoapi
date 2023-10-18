@@ -24,6 +24,13 @@ def before_all(context):
     context.headers = HEADERS
     context.project_list = []
     context.section_list = []
+    context.task_list = []
+    context.resource_list = {
+        "projects": [],
+        "sections": [],
+        "tasks": []
+    }
+
     context.url = BASE_URL
     LOGGER.debug("Headers before feature: %s", context.headers)
     projects = get_all_projects(context)
@@ -32,9 +39,14 @@ def before_all(context):
 
 
 def before_feature(context, feature):
+    """
+    Method to be executed before each feature
+    :param context:     object      Contains context information
+    :param feature:     object      Contains feature information
+    """
+    LOGGER.debug("Before feature")
     context.feature_name = feature.name.lower()
     # context.url = BASE_URL + feature.name.lower()
-    print("Before feature")
 
 
 def before_scenario(context, scenario):
@@ -46,14 +58,22 @@ def before_scenario(context, scenario):
         response = create_project(context=context, name_project="project x")
         context.project_id = response["body"]["id"]
         LOGGER.debug("Project id created: %s", context.project_id)
-        context.project_list.append(context.project_id)
+        context.resource_list["projects"].append(context.project_id)
 
     if "section_id" in scenario.tags:
 
-        response = create_section(context=context, project_id=context.project_id_from_all, section_name="section x")
+        response = create_section(context=context, project_id=context.project_id_from_all,
+                                  section_name="section x")
         context.section_id = response["body"]["id"]
         LOGGER.debug("Section id created: %s", context.section_id)
-        context.section_list.append(context.section_id)
+        context.resource_list["sections"].append(context.section_id)
+
+    if "task_id" in scenario.tags:
+
+        response = create_task(context=context)
+        context.task_id = response["body"]["id"]
+        LOGGER.debug("Task id created: %s", context.task_id)
+        context.resource_list["tasks"].append(context.task_id)
 
 
 def after_scenario(context, scenario):
@@ -65,12 +85,16 @@ def after_feature(context, feature):
 
 
 def after_all(context):
-    print("After all")
-    for project in context.project_list:
-        url = f"{context.url}projects/{project}"
-        RestClient().send_request(method_name="delete", session=context.session,
-                                  url=url, headers=HEADERS)
-        LOGGER.info("Deleting project: %s", project)
+    LOGGER.debug("After all")
+    LOGGER.debug("Resources: %s", context.resource_list)
+    for resource in context.resource_list:
+        LOGGER.debug("Resource: %s", resource)
+        for r in context.resource_list[resource]:
+            # i.e https://api.todoist.com/rest/v2/ projects / project_id
+            url = f"{context.url}{resource}/{r}"
+            RestClient().send_request(method_name="delete", session=context.session,
+                                      url=url, headers=context.headers)
+            LOGGER.info("Deleting %s: %s", resource, r)
 
 
 def create_project(context, name_project):
@@ -104,5 +128,37 @@ def get_all_projects(context):
     """
     response = RestClient().send_request(method_name="get", session=context.session,
                                          url=context.url + "projects", headers=context.headers)
+
+    return response
+
+
+def create_task(context, project_id=None, section_id=None):
+    data = {
+        "content": "Task created in feature",
+        "due_string": "tomorrow at 11:00",
+        "due_lang": "en",
+        "priority": 4
+    }
+    if project_id:
+        data["project_id"] = project_id
+    if section_id:
+        data["section_id"] = section_id
+
+    response = RestClient().send_request(method_name="post", session=context.session, headers=context.headers,
+                                         url=context.url + "tasks", data=data)
+
+    return response
+
+
+def create_comment(context, task_id=None, section_id=None):
+    data = {
+        "content": "Comment created in task",
+
+    }
+    if task_id:
+        data["project_id"] = task_id
+
+    response = RestClient().send_request(method_name="post", session=context.session, headers=context.headers,
+                                         url=context.url + "tasks", data=data)
 
     return response

@@ -2,7 +2,8 @@
 
 Feature: Sections
 
-  Scenario:  Verify GET all projects is returning all data correctly
+  @ttt
+  Scenario:  Verify GET all sections is returning all data correctly
       As a user I want to GET the projects from TODOIST API
 
     Given I set the base url and headers

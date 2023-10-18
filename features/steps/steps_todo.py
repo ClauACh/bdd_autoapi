@@ -72,15 +72,17 @@ def step_call_endpoint(context, feature, method_name, param):
     context.method = method_name
 
 
-@step("I validate the response data")
-def step_impl(context):
+@step("I validate the response data from {option}")
+def step_impl(context, option):
     """
+    :param option:  str     option to validate response can be: file or database
     :type context: behave.runner.Context
     """
     ValidateResponse().validate_response(actual_response=context.response,
                                          method=context.method.lower(),
                                          expected_status_code=context.status_code,
-                                         feature=context.feature_name)
+                                         feature=context.feature_name,
+                                         option=option)
 
 
 def get_url_by_feature(context):
@@ -91,8 +93,13 @@ def get_url_by_feature(context):
         feature_id = context.section_id
     elif context.feature_name == "tasks":
         feature_id = context.task_id
+    elif context.feature_name == "comments":
+        feature_id = context.task_id
 
-    url = f"{context.url}{context.feature_name}/{feature_id}"
+    if context.feature_name == "comments":
+                url = f"{context.url}{context.feature_name}?task_id={feature_id}"
+    else:
+        url = f"{context.url}{context.feature_name}/{feature_id}"
 
     return url
 
@@ -120,7 +127,41 @@ def get_data_by_feature(context):
             dictionary["section_id"] = context.section_id
         if "project_id" in dictionary:
             dictionary["project_id"] = context.project_id
+    if context.feature_name == "tasks":
+        if "project_id" in dictionary:
+            dictionary["project_id"] = context.project_id
 
     LOGGER.debug("Dictionary created: %s", dictionary)
     return dictionary
 
+
+@when("I want close the task")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    task_id = context.task_id
+    url_close_task = f"{context.url}tasks/{task_id}/close"
+    response = RestClient().send_request(method_name="post", session=context.session,
+                                         headers=context.headers, url=url_close_task)
+
+    assert response["status"] == 204
+
+
+@then("I want to reopen the task")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    task_id = context.task_id
+    url_close_task = f"{context.url}tasks/{task_id}/close"
+    response_close = RestClient().send_request(method_name="post", session=context.session,
+                                               headers=context.headers, url=url_close_task)
+
+    assert response_close["status"] == 204
+
+    url_reopen_task = f"{context.url}tasks/{task_id}/reopen"
+    response_reopen = RestClient().send_request(method_name="post", session=context.session,
+                                                headers=context.headers, url=url_reopen_task)
+
+    context.response = response_reopen

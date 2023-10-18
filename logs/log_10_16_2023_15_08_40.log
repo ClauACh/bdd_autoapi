@@ -1,0 +1,48 @@
+2023-10-16 15:08:40,912 UTC DEBUG    builtins        Headers before feature: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 15:08:40,912 UTC INFO     utils.rest_client Method Name: get
+2023-10-16 15:08:40,912 UTC INFO     utils.rest_client Endpoint (URL): https://api.todoist.com/rest/v2/projects
+2023-10-16 15:08:42,036 UTC INFO     utils.rest_client Status code: 200
+2023-10-16 15:08:42,036 UTC DEBUG    utils.rest_client Request: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 15:08:42,043 UTC INFO     utils.rest_client Response: [
+	{
+		"id": "2319574915",
+		"parent_id": null,
+		"order": 0,
+		"color": "charcoal",
+		"name": "Inbox",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": true,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2319574915",
+		"view_style": "list"
+	},
+	{
+		"id": "2321526644",
+		"parent_id": null,
+		"order": 4,
+		"color": "charcoal",
+		"name": "Project 2",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": false,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2321526644",
+		"view_style": "list"
+	}
+]
+
+2023-10-16 15:08:42,043 UTC DEBUG    builtins        {'body': [{'id': '2319574915', 'parent_id': None, 'order': 0, 'color': 'charcoal', 'name': 'Inbox', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': True, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2319574915', 'view_style': 'list'}, {'id': '2321526644', 'parent_id': None, 'order': 4, 'color': 'charcoal', 'name': 'Project 2', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': False, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2321526644', 'view_style': 'list'}], 'headers': {'Content-Type': 'application/json', 'Content-Length': '626', 'Connection': 'keep-alive', 'Date': 'Mon, 16 Oct 2023 19:08:41 GMT', 'Access-Control-Allow-Credentials': 'false', 'Access-Control-Allow-Origin': '*', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Server': 'gunicorn', 'Set-Cookie': 'csrf=ad3b5cee82af4b46ad6a1568e0033ec4; Expires=Thu, 13-Oct-2033 19:08:41 GMT; Secure; Path=/; SameSite=None, tduser=v4.public.eyJ1c2VyX2lkIjogNDU2ODEzMTksICJleHAiOiAiMjAyMy0xMC0zMFQxOTowODo0MSswMDowMCJ9dYTZX6l2HpgwVpbJ4h2rSg5w7XFTqb3B2FIshCmWYb-q7OdXGVV9Qb5ANzF4QIjVgZDhBEKEXWmGJYNRXEarCA; Domain=.todoist.com; Expires=Mon, 30-Oct-2023 19:08:41 GMT; Max-Age=1209600; Secure; HttpOnly; Path=/', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'Accept-Encoding', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 2ac78d0bdcfde63dad99100e18cd3f62.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SCL51-P2', 'X-Amz-Cf-Id': 'ABrA_xDfl3eKJFXDx0lv9RFXwqAOnSc90t2eul4E6q6xv5Fb_EUe7g=='}, 'status': 200}
+2023-10-16 15:08:42,057 UTC DEBUG    builtins        Scenario tags: ['task']
+2023-10-16 15:08:42,057 UTC DEBUG    builtins        Scenario Name: Verify GET all tasks is returning all data correctly
+2023-10-16 15:08:42,057 UTC DEBUG    builtins        HEADERS: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 15:08:42,057 UTC DEBUG    builtins        URL: https://api.todoist.com/rest/v2/
+2023-10-16 15:08:42,062 UTC INFO     utils.rest_client Method Name: get
+2023-10-16 15:08:42,062 UTC INFO     utils.rest_client Endpoint (URL): https://api.todoist.com/rest/v2/tasks
+2023-10-16 15:09:07,206 UTC INFO     utils.rest_client Status code: 200
+2023-10-16 15:09:07,206 UTC DEBUG    utils.rest_client Request: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a', 'Cookie': 'tduser=v4.public.eyJ1c2VyX2lkIjogNDU2ODEzMTksICJleHAiOiAiMjAyMy0xMC0zMFQxOTowODo0MSswMDowMCJ9dYTZX6l2HpgwVpbJ4h2rSg5w7XFTqb3B2FIshCmWYb-q7OdXGVV9Qb5ANzF4QIjVgZDhBEKEXWmGJYNRXEarCA; csrf=ad3b5cee82af4b46ad6a1568e0033ec4'}
+2023-10-16 15:09:07,222 UTC DEBUG    builtins        Status code from response: 200
+2023-10-16 15:09:07,225 UTC DEBUG    builtins        Status code param: <class 'int'>
+2023-10-16 15:09:07,225 UTC DEBUG    builtins        Status code response: <class 'int'>

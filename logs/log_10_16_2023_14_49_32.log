@@ -1,0 +1,41 @@
+2023-10-16 14:49:32,627 UTC DEBUG    builtins        Headers before feature: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 14:49:32,627 UTC INFO     utils.rest_client Method Name: get
+2023-10-16 14:49:32,627 UTC INFO     utils.rest_client Endpoint (URL): https://api.todoist.com/rest/v2/projects
+2023-10-16 14:49:35,282 UTC INFO     utils.rest_client Status code: 200
+2023-10-16 14:49:35,283 UTC DEBUG    utils.rest_client Request: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 14:49:35,287 UTC INFO     utils.rest_client Response: [
+	{
+		"id": "2319574915",
+		"parent_id": null,
+		"order": 0,
+		"color": "charcoal",
+		"name": "Inbox",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": true,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2319574915",
+		"view_style": "list"
+	},
+	{
+		"id": "2321526644",
+		"parent_id": null,
+		"order": 4,
+		"color": "charcoal",
+		"name": "Project 2",
+		"comment_count": 0,
+		"is_shared": false,
+		"is_favorite": false,
+		"is_inbox_project": false,
+		"is_team_inbox": false,
+		"url": "https://todoist.com/showProject?id=2321526644",
+		"view_style": "list"
+	}
+]
+
+2023-10-16 14:49:35,289 UTC DEBUG    builtins        {'body': [{'id': '2319574915', 'parent_id': None, 'order': 0, 'color': 'charcoal', 'name': 'Inbox', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': True, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2319574915', 'view_style': 'list'}, {'id': '2321526644', 'parent_id': None, 'order': 4, 'color': 'charcoal', 'name': 'Project 2', 'comment_count': 0, 'is_shared': False, 'is_favorite': False, 'is_inbox_project': False, 'is_team_inbox': False, 'url': 'https://todoist.com/showProject?id=2321526644', 'view_style': 'list'}], 'headers': {'Content-Type': 'application/json', 'Content-Length': '626', 'Connection': 'keep-alive', 'Date': 'Mon, 16 Oct 2023 18:49:35 GMT', 'Access-Control-Allow-Credentials': 'false', 'Access-Control-Allow-Origin': '*', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Server': 'gunicorn', 'Set-Cookie': 'csrf=87bd9a15220d46f599ad36a202051481; Expires=Thu, 13-Oct-2033 18:49:34 GMT; Secure; Path=/; SameSite=None, tduser=v4.public.eyJ1c2VyX2lkIjogNDU2ODEzMTksICJleHAiOiAiMjAyMy0xMC0zMFQxODo0OTozNSswMDowMCJ9UmHZ-F163GWKQ6Z7MQ6dilIMshq68iJEsC5zbNdYguGNzG4rS_P4bHdRX9qsBA8FXI2uXYveuzy2IVD_FJEyAA; Domain=.todoist.com; Expires=Mon, 30-Oct-2023 18:49:35 GMT; Max-Age=1209600; Secure; HttpOnly; Path=/', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'Accept-Encoding', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 c5ff917d2e5c954d84a7b9d6201c50d6.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'SCL51-P2', 'X-Amz-Cf-Id': 'BXkEN9f22DuI7SSKx32qUwbSveDx26HRHpr95faYLjDv1vFGN_q-yA=='}, 'status': 200}
+2023-10-16 14:49:35,298 UTC DEBUG    builtins        Scenario tags: ['task_id', 'ttt']
+2023-10-16 14:49:35,298 UTC DEBUG    builtins        Scenario Name: Verify GET one tasks is returning all data correctly
+2023-10-16 14:49:35,298 UTC DEBUG    builtins        HEADERS: {'Authorization': 'Bearer 7357cc39152295c3c4e1e568f90e1e1dc4a04f6a'}
+2023-10-16 14:49:35,298 UTC DEBUG    builtins        URL: https://api.todoist.com/rest/v2/
