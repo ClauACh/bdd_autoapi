@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/sections",
+    "body": {
+      "name": "Section Created"
+    }
+  },
+  "response": {
+    "body": {
+        "id": "1111",
+        "project_id": "2203325225",
+        "order": 1,
+        "name": "Section Valid"
+    },
+    "headers": {
+      "Content-type": "application/json"
+    },
+    "status": 200
+  }
+}

@@ -46,7 +46,7 @@ def step_call_endpoint(context, feature, method_name, param):
         if context.text:
             data = get_data_by_feature(context)
     elif method_name == "DELETE" or (method_name == "GET" and param != "None"):
-        url = get_url_by_feature(context)
+        url = get_url_by_feature(context, param)
     # if context.table:
     #     LOGGER.debug("Table: %s", context.table)
     #     index = 0
@@ -85,7 +85,7 @@ def step_impl(context, option):
                                          option=option)
 
 
-def get_url_by_feature(context):
+def get_url_by_feature(context, param):
     feature_id = None
     if context.feature_name == "projects":
         feature_id = context.project_id
@@ -97,7 +97,7 @@ def get_url_by_feature(context):
         feature_id = context.task_id
 
     if context.feature_name == "comments":
-                url = f"{context.url}{context.feature_name}?task_id={feature_id}"
+        url = f"{context.url}{context.feature_name}?task_id={feature_id}"
     else:
         url = f"{context.url}{context.feature_name}/{feature_id}"
 
@@ -114,7 +114,8 @@ def append_to_resources_list(context, response):
         context.project_list.append(response["body"]["id"])
     if context.feature_name == "sections":
         context.section_list.append(response["body"]["id"])
-
+    if context.feature_name == "task":
+        context.task_list.append(response["body"]["id"])
 
 def get_data_by_feature(context):
     LOGGER.debug("JSON: %s", context.text)
@@ -130,7 +131,9 @@ def get_data_by_feature(context):
     if context.feature_name == "tasks":
         if "project_id" in dictionary:
             dictionary["project_id"] = context.project_id
-
+    if context.feature_name == "comments":
+        if "task_id" in dictionary:
+            dictionary["task_id"] = context.task_id
     LOGGER.debug("Dictionary created: %s", dictionary)
     return dictionary
 

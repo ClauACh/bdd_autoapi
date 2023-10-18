@@ -150,15 +150,19 @@ def create_task(context, project_id=None, section_id=None):
     return response
 
 
-def create_comment(context, task_id=None, section_id=None):
+def create_comment(context, task_id=None, section_id=None, project_id=None):
     data = {
         "content": "Comment created in task",
 
     }
+    if project_id:
+        data["project_id"] = project_id
+    if section_id:
+        data["section_id"] = section_id
     if task_id:
-        data["project_id"] = task_id
+        data["task_id"] = task_id
 
     response = RestClient().send_request(method_name="post", session=context.session, headers=context.headers,
-                                         url=context.url + "tasks", data=data)
+                                         url=context.url + "comments", data=data)
 
     return response
