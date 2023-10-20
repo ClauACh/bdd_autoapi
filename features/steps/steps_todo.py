@@ -46,7 +46,10 @@ def step_call_endpoint(context, feature, method_name, param):
         if context.text:
             data = get_data_by_feature(context)
     elif method_name == "DELETE" or (method_name == "GET" and param != "None"):
-        url = get_url_by_feature(context, param)
+        if feature == "comments" and "task_id" in param:
+            url = f"{context.url}{context.feature_name}?task_id={context.task_id}"
+        else:
+            url = get_url_by_feature(context, param)
     # if context.table:
     #     LOGGER.debug("Table: %s", context.table)
     #     index = 0
@@ -94,11 +97,11 @@ def get_url_by_feature(context, param):
     elif context.feature_name == "tasks":
         feature_id = context.task_id
     elif context.feature_name == "comments":
-        feature_id = context.task_id
+        feature_id = context.comment_id
 
-    if context.feature_name == "comments":
-        url = f"{context.url}{context.feature_name}?task_id={feature_id}"
-    else:
+    #if context.feature_name == "comments":
+    #    url = f"{context.url}{context.feature_name}?task_id={feature_id}"
+    #else:
         url = f"{context.url}{context.feature_name}/{feature_id}"
 
     return url
@@ -116,6 +119,9 @@ def append_to_resources_list(context, response):
         context.section_list.append(response["body"]["id"])
     if context.feature_name == "task":
         context.task_list.append(response["body"]["id"])
+    if context.feature_name == "comments":
+        context.comment_list.append(response["body"]["id"])
+
 
 def get_data_by_feature(context):
     LOGGER.debug("JSON: %s", context.text)

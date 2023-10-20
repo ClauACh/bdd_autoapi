@@ -25,10 +25,12 @@ def before_all(context):
     context.project_list = []
     context.section_list = []
     context.task_list = []
+    context.comment_list = []
     context.resource_list = {
         "projects": [],
         "sections": [],
-        "tasks": []
+        "tasks": [],
+        "comments": []
     }
 
     context.url = BASE_URL
@@ -74,6 +76,13 @@ def before_scenario(context, scenario):
         context.task_id = response["body"]["id"]
         LOGGER.debug("Task id created: %s", context.task_id)
         context.resource_list["tasks"].append(context.task_id)
+
+    if "comment_id" and "task_id" in scenario.tags:
+
+        response = create_comment(context=context, task_id=context.task_id, content="comment from Task")
+        context.comment_id = response["body"]["id"]
+        LOGGER.debug("Comment id created: %s", context.comment_id)
+        context.resource_list["comments"].append(context.comment_id)
 
 
 def after_scenario(context, scenario):

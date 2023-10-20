@@ -2,7 +2,7 @@
 
 Feature: Comments
 
-  @task_id
+  @task_id @comment_id
   Scenario:  Verify GET all comments from a task is returning all data correctly
       As a user I want to GET the comments from TODOIST API
 
@@ -24,14 +24,14 @@ Feature: Comments
     """
     Then I receive a 200 status code in response
 
-  @comment_id
+  @comment_id @task_id
   Scenario: Verify DELETE comment endpoint creates a comment with the name provided
 
     Given I set the base url and headers
     When I call to comments endpoint using "DELETE" method using the "comment_id" as parameter
     Then I receive a 204 status code in response
 
-  @comment_id
+  @comment_id @task_id
   Scenario: Verify POST project endpoint updates a comment with the name provided
 
     Given I set the base url and headers
