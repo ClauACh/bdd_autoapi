@@ -30,6 +30,7 @@ Feature: Comments
     Given I set the base url and headers
     When I call to comments endpoint using "DELETE" method using the "comment_id" as parameter
     Then I receive a 204 status code in response
+    And I validate the response data from file
 
   @comment_id @task_id
   Scenario: Verify POST project endpoint updates a comment with the name provided

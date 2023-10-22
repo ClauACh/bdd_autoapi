@@ -17,22 +17,8 @@ Feature: Tasks
     Given I set the base url and headers
     When I call to tasks endpoint using "GET" method using the "task_id" as parameter
     Then I receive a 200 status code in response
-    And I validate the response data
+    And I validate the response data from file
 
-      Scenario:  Verify POST section creates the task correctly
-      As a user I want to create a task from TODOIST API
-
-    Given I set the base url and headers
-    When I call to tasks endpoint using "POST" method using the "task data" as parameter
-    """
-    {
-      "content": "Task created from feature",
-      "due_string": "tomorrow at 11:00",
-      "due_lang": "es",
-      "priority": 3
-    }
-    """
-    Then I receive a 200 status code in response
 
   @post
   Scenario: Verify POST task endpoint creates a task with the name provided
@@ -46,7 +32,7 @@ Feature: Tasks
     """
     Then I receive a 200 status code in response
 
-  @project_id
+  @project_id @task_id
   Scenario:  Verify POST section creates the task using a project provided correctly
       As a user I want to create a task with project id provided from TODOIST API
 
@@ -71,14 +57,14 @@ Feature: Tasks
     Then I receive a 204 status code in response
     And I validate the response data from file
 
-  @post
+  @post @task_id
   Scenario: Verify POST task endpoint updates a task with the content provided
 
     Given I set the base url and headers
     When I call to tasks endpoint using "POST" method using the "update task data" as parameter
     """
     {
-      "content": "Task Updated",
+      "content": "Task Updated"
     }
     """
     Then I receive a 200 status code in response

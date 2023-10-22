@@ -66,6 +66,7 @@ class RestClient(metaclass=Singleton):
     def get(self, session, url_base, headers):
         """
 
+        :param session:
         :param url_base:
         :param headers:
         :return:
@@ -75,6 +76,8 @@ class RestClient(metaclass=Singleton):
     def post(self, session, url_base, headers, data):
         """
 
+        :param session:
+        :param data:
         :param url_base:
         :param headers:
         :return:
@@ -84,6 +87,7 @@ class RestClient(metaclass=Singleton):
     def delete(self, session, url_base, headers):
         """
 
+        :param session:
         :param url_base:
         :param headers:
         :return:
