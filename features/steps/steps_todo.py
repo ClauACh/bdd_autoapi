@@ -86,16 +86,20 @@ def step_call_endpoint(context, feature, method_name, param):
     context.method = method_name
 
 
-@step("I validate the response data from {option}")
-def step_impl(context, option):
+@step("I validate the response data from {option} using {list}")
+def step_impl(context, option, list):
     """
+    :param list:
     :param option:  str     option to validate response can be: file or database
     :type context: behave.runner.Context
     """
+    feature = context.feature_name
+    if list == "all":
+        feature = f"{context.feature_name}_all"
     ValidateResponse().validate_response(actual_response=context.response,
                                          method=context.method.lower(),
                                          expected_status_code=context.status_code,
-                                         feature=context.feature_name,
+                                         feature=feature,
                                          option=option)
 
 

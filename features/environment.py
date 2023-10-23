@@ -109,18 +109,18 @@ def before_scenario(context, scenario):
         context.resource_list["labels"].append(context.label_id)
 
 
-def after_scenario():
+def after_scenario(context, scenario):
     """
     :return:
     """
     print("after scenario")
 
 
-def after_feature(context):
+def after_feature(context, scenario):
     """
     Method to execute instructions after feature
+    :param scenario:
     :param context:
-    :param feature:
     :return:
     """
     LOGGER.debug("After feature")

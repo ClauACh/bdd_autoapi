@@ -9,6 +9,7 @@ Feature: Tasks
     Given I set the base url and headers
     When I call to tasks endpoint using "GET" method using the "None" as parameter
     Then I receive a 200 status code in response
+    And I validate the response data from file using all
 
   @task_id
   Scenario:  Verify GET one tasks is returning all data correctly
@@ -17,7 +18,7 @@ Feature: Tasks
     Given I set the base url and headers
     When I call to tasks endpoint using "GET" method using the "task_id" as parameter
     Then I receive a 200 status code in response
-    And I validate the response data from file
+    And I validate the response data from file using ""
 
 
   @post
@@ -31,6 +32,8 @@ Feature: Tasks
     }
     """
     Then I receive a 200 status code in response
+    And I validate the response data from file using ""
+
 
   @project_id @task_id
   Scenario:  Verify POST section creates the task using a project provided correctly
@@ -48,6 +51,8 @@ Feature: Tasks
     }
     """
     Then I receive a 200 status code in response
+    And I validate the response data from file using ""
+
 
   @task_id
   Scenario: Verify DELETE task endpoint deletes a task with the id provided
@@ -55,7 +60,7 @@ Feature: Tasks
     Given I set the base url and headers
     When I call to tasks endpoint using "DELETE" method using the "project_id" as parameter
     Then I receive a 204 status code in response
-    And I validate the response data from file
+    And I validate the response data from file using ""
 
   @post @task_id
   Scenario: Verify POST task endpoint updates a task with the content provided
@@ -68,6 +73,8 @@ Feature: Tasks
     }
     """
     Then I receive a 200 status code in response
+    And I validate the response data from file using ""
+
 
     @task_id
     Scenario:  Verify that a task can be reopened
@@ -76,5 +83,7 @@ Feature: Tasks
     When I want close the task
     Then I want to reopen the task
     And I receive a 204 status code in response
+    And I validate the response data from file using ""
+
 
 

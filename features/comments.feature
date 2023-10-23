@@ -9,9 +9,10 @@ Feature: Comments
     Given I set the base url and headers
     When I call to comments endpoint using "GET" method using the "task_id" as parameter
     Then I receive a 200 status code in response
+    And I validate the response data from file using all
 
 
-  @task_id
+  @task_id @wip
   Scenario: Verify POST comment endpoint creates a comment with the name provided
 
     Given I set the base url and headers
@@ -23,6 +24,7 @@ Feature: Comments
     }
     """
     Then I receive a 200 status code in response
+    And I validate the response data from file using ""
 
   @comment_id @task_id
   Scenario: Verify DELETE comment endpoint creates a comment with the name provided
@@ -30,7 +32,7 @@ Feature: Comments
     Given I set the base url and headers
     When I call to comments endpoint using "DELETE" method using the "comment_id" as parameter
     Then I receive a 204 status code in response
-    And I validate the response data from file
+    And I validate the response data from file using ""
 
   @comment_id @task_id
   Scenario: Verify POST project endpoint updates a comment with the name provided
@@ -44,4 +46,5 @@ Feature: Comments
     }
     """
     Then I receive a 200 status code in response
+    And I validate the response data from file using ""
 
